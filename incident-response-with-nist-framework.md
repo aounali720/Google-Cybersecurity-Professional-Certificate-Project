@@ -1,57 +1,66 @@
-<h2>Scenario</h2>
-<p>
-  You are a security professional at a large organization. You mainly work with their research team. Part of your job is to ensure users on this team are authorized with the appropriate permissions. This helps keep the system secure.</p>
+<h2>Scenario:</h2>
+<p>You are a cybersecurity analyst working for a multimedia company that offers web design services, graphic design, and social media marketing solutions to small businesses. Your organization recently experienced a DDoS attack, which compromised the internal network for two hours until it was resolved.</p>
 
-<p>Your task is to examine existing permissions on the file system. You’ll need to determine if the permissions match the authorization that should be given. If they do not match, you’ll need to modify the permissions to authorize the appropriate users and remove any unauthorized access.</p>
+<p>During the attack, your organization’s network services suddenly stopped responding due to an incoming flood of ICMP packets. Normal internal network traffic could not access any network resources. The incident management team responded by blocking incoming ICMP packets, stopping all non-critical network services offline, and restoring critical network services.</p>
 
+<p>The company’s cybersecurity team then investigated the security event. They found that a malicious actor had sent a flood of ICMP pings into the company’s network through an unconfigured firewall. This vulnerability allowed the malicious attacker to overwhelm the company’s network through a distributed denial of service (DDoS) attack.</p>
 
-<h3>Solution</h3>
-<b>Step 1 (Checking file and directory details):</b>
-<p>
-  Important commands used to check file and directory details are:
-  <ul>
-    <li><pre>ls command - Used to display all files and sub-directories in a directory</pre></li>
-    <li><pre>ls -l command - To list the contents and permissions of the directory</pre></li>
-    <li><pre>ls -a command - To find hidden files in the directory</pre></li>
+<p>To address this security event, the network security team implemented:</p>
+<ul>
+  <li>A new firewall rule to limit the rate of incoming ICMP packets</li>
+
+<li>Source IP address verification on the firewall to check for spoofed IP addresses on incoming ICMP packets</li>
+
+  <li>Network monitoring software to detect abnormal traffic patterns</li>
+
+  <li>An IDS/IPS system to filter out some ICMP traffic based on suspicious characteristics</li>
   </ul>
-  The combination of commands (2) and (3) above <i>(i.e. ls -al)</i> will list the contents and permissions of hidden files in the directory.
-  <img width="960" alt="image" src="https://github.com/devhalimah/Google-Cybersecurity-Professional-Certificate-Projects/assets/64546668/ea159845-c01d-43aa-b40c-850fe03a2f86">
+
+<p>As a cybersecurity analyst, you are tasked with using this security event to create a plan to improve your company’s network security, following the National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF). You will use the CSF to help you navigate through the different steps of analyzing this cybersecurity incident and integrate your analysis into a general security strategy:</p>
+
+<ul>
+  <li>Identify security risks through regular audits of internal networks, systems, devices, and access privileges to identify potential gaps in security.</li>
+
+<li>Protect internal assets through the implementation of policies, procedures, training and tools that help mitigate cybersecurity threats.</li>
+
+<li>Detect potential security incidents and improve monitoring capabilities to increase the speed and efficiency of detections.</li>
+
+<li>Respond to contain, neutralize, and analyze security incidents; implement improvements to the security process.</li>
+
+<li>Recover affected systems to normal operation and restore systems data and/or assets that have been affected by an incident. </li>
+  </ul>
+  
+<h3>Solution</h3>
+  <b>Step 1 (Identification of attack type and systems affected):</b>
+<p>
+  Type of attack: ICMP flood attack.<br>
+  Since the DDos attack that shut the organization’s network services down was due to an incoming flood of ICMP packets, the DoS attack type was an ICMP flood attack.
+  <p>The only system affected was the organization's internal network. </p>
 </p>
 
-<b>Step 2 (Description of the permissions string above):</b>
+<b>Step 2 (Protection of assets from compromise):</b>
 <p>
-   The 10-character string (rwxrwxrwx) above represents read, write, execute permissions for users, groups, and other users in the filesystem.<br>The permissions string looks like this for directories(d): <pre>drwxrwxrwx</pre> and is represented by this for regular files(-): <pre>-rwxrwxrwx</pre>.
+  <ul>
+    <li>A new firewall rule should be created to limit the rate of incoming ICMP packets</li>
+    <li>There should be source IP address verification on the firewall to check for spoofed IP addresses on incoming ICMP packets</li>
+    <li>Installation of network monitoring software to detect abnormal traffic patterns</li>
+    <li>An IDS/IPS system should be installed to filter out some ICMP traffic based on suspicious characteristics</li>
+  </ul>
+  Since the DDos attack that shut the organization’s network services down was due to an incoming flood of ICMP packets, the DoS attack type was an ICMP flood attack.
+  <p>The only system affected was the organization's internal network. </p>
 </p>
 
-<b>Step 3 (Changing file permissions):</b>
+<b>Step 3 (How to detect similar incidents in the future):</b>
 <p>
-  The organization does not allow other to have write access to any files. As a system administrator following the principle of least privilege, I checked files with incorrect permissions and changed the permissions as needed.<br>
-  <img width="960" alt="image" src="https://github.com/devhalimah/Google-Cybersecurity-Professional-Certificate-Projects/assets/64546668/14056d1d-5909-4715-a393-8d67a31469d3">
-<u>
-  <li>The file "project_k.txt" has write permissions for others which is against the organization's policy. To remove the write command, I entered the command below:
-    <pre>chmod o-w project_k.txt</pre></li>
-  <li>Furthermore, the file "project_m.txt" is a restricted file and should not be readable or writable, even by the group. I entered the command below to change the permissions of the project_m.txt file so that the group doesn’t have read permissions.
-    <pre>chmod g-r project_m.txt</pre></li>
-  </u>
+  By implementing all measures listed in <b>Step 2,</b> incident detection will be a lot easier since the firewalls and IPS/IDS systems would continuously monitor network traffic on network devices to check for suspicious activity, such as incoming external ICMP packets from non-trusted IP addresses attempting to pass through the organization’s network firewall. 
 </p>
 
-<b>Step 4 (Changing file permissions on a hidden file):</b>
+<b>Step 4 (Creating a response plan for future cybersecurity incidents):</b>
 <p>
-  Since the research team has archived .project_x.txt, it is why it’s a hidden file and should not have write permissions for anyone, but the user and group should be able to read the file.<br> To assign the appropriate authorization for this file as the system administrator, I entered the command below:
-  <pre>chmod u-w,g-w,g+r .project_x.txt</pre>
-  <img width="960" alt="image" src="https://github.com/devhalimah/Google-Cybersecurity-Professional-Certificate-Projects/assets/64546668/6198d42e-1ab2-4a3e-a9ca-20ee7873dca0">
-  <br>This will restrict unauthorized access and strengthen security on the system.
+  After identifying the tools and methods put in place for detecting potential vulnerabilities and threats, there is need to create a response plan in the event of a future incident. This can be carried out by creating an updated security playbook so everyone on the team will understand how to go about incident response in the event of a future incident.
 </p>
 
-<b>Step 5 (Changing directory permissions):</b>
+<b>Step 5 (Recovering from the incident):</b>
 <p>
-  <img width="960" alt="image" src="https://github.com/devhalimah/Google-Cybersecurity-Professional-Certificate-Projects/assets/64546668/92bc763f-0053-48f8-b24a-0e62f689f305">
-  <br>The files and directories in the projects directory belong to the researcher2 user. So, only this user is meant to have access to the drafts directory and its contents.<br> As a Linux system administrator, I used the command below to modify the permissions accordingly:
-  <pre>chmod g-x drafts</pre>
-  This command removes execute permission for group, allowing only researcher2 user to have access to the drafts directory and its contents.
-</p>
-
-<b>Summary:</b>
-<p>
- As a Linux system administrator and cybersecurity professional, I have successfully examined existing permissions on the organization's file system, modified the permissions to authorize appropriate users and removed all unauthorized access. This implementation of least privilege principle has further strengthened the organization's security system and posture.
+  All pending organizational services and internal or external delivery errors should be fixed and forwarded to intended recipients immediately after the incident has been resolved. With a firewall rule configured to limit the rate of incoming ICMP packets in the organization's internal network, there is minimal possibility of encountering an ICMP flood attack within the organization's network.
 </p>
